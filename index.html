@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahal School - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .login-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .logo.rotate {
+            animation: rotateLogo 2s ease-in-out;
+        }
+        
+        @keyframes rotateLogo {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .attempts-message {
+            color: #e67e22;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(230, 126, 34, 0.1);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .locked-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            color: #2ecc71;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+       <img src="sahal.jpg" width="50" height="50" alt="" srcset="">
+        <h1>Sahal School</h1>
+        <h6>Banadir School BEST</h6>
+        <p>waan ku faraxsanahay inaa mar kale dib igu soo labatay maamule.</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">Login</button>
+            
+            <div class="error-message" id="errorMessage">
+                Username iyo password waa qalad iska sax.
+            </div>
+            
+            <div class="attempts-message" id="attemptsMessage">
+                You have <span id="remainingAttempts">7</span> attempts remaining.
+            </div>
+            
+            <div class="locked-message" id="lockedMessage">
+                akoon kani wuu xiran yahay! Fadlan sug 1 daqiiqo .
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                waad saxday ku soo dhawaaw maamule...
+            </div>
+        </form>
+        
+        <div class="footer">
+            &copy; 2025 Sahal School. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('logo');
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('errorMessage');
+            const attemptsMessage = document.getElementById('attemptsMessage');
+            const lockedMessage = document.getElementById('lockedMessage');
+            const successMessage = document.getElementById('successMessage');
+            const remainingAttemptsSpan = document.getElementById('remainingAttempts');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Correct credentials
+            const correctUsername = "Sahal school";
+            const correctPassword = "sahal 2025 galab";
+            
+            // Initialize attempts counter
+            let attempts = 7;
+            let isLocked = false;
+            let lockTimeout;
+            
+            // Logo rotation after 3 seconds
+            setTimeout(() => {
+                logo.classList.add('rotate');
+            }, 3000);
+            
+            // Handle form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (isLocked) {
+                    return;
+                }
+                
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                
+                // Hide all messages
+                errorMessage.style.display = 'none';
+                attemptsMessage.style.display = 'none';
+                lockedMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+                
+                // Check credentials
+                if (username === correctUsername && password === correctPassword) {
+                    // Successful login
+                    successMessage.style.display = 'block';
+                    loginBtn.disabled = true;
+                    
+                    // Simulate redirect to new page
+                    setTimeout(() => {
+                        window.location.href = "https://banadirschool.github.io/Sahal-Diwan-galin/"; // Replace with your actual page
+                    }, 2000);
+                } else {
+                    // Failed login
+                    attempts--;
+                    
+                    if (attempts > 0) {
+                        errorMessage.style.display = 'block';
+                        attemptsMessage.style.display = 'block';
+                        remainingAttemptsSpan.textContent = attempts;
+                    } else {
+                        // Lock the account
+                        isLocked = true;
+                        lockedMessage.style.display = 'block';
+                        loginBtn.disabled = true;
+                        
+                        // Reset after 1 minute
+                        lockTimeout = setTimeout(() => {
+                            isLocked = false;
+                            attempts = 7;
+                            loginBtn.disabled = false;
+                            lockedMessage.style.display = 'none';
+                        }, 60000); // 1 minute
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
